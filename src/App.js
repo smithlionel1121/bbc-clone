@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+import News from "./News";
+
+import Banner from "./components/Banner";
+import NavBar from "./components/Nav";
+import Category from "./components/Category";
+import Footer from "./components/Footer";
+
+import Container from "react-bootstrap/Container";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      <Container fluid className="p-0">
+        <Container>
+          <h1
+            className="text-left pt-2 pb-0 mb-0"
+            style={{ paddingBottom: "2rem" }}
+          >
+            Welcome to the BBC
+          </h1>
+        </Container>
+        {News.map((category) =>
+          !!category.banner ? (
+            <Banner key={category.title} category={category} />
+          ) : (
+            <Category key={category.name} category={category} />
+          )
+        )}
+      </Container>
+      <Footer />
     </div>
   );
 }
